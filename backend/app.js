@@ -1,17 +1,13 @@
-const express = require('express');
+const express = require("express");
+const productrouter = require("./router/ProductRoutes");
+
+const bodyParser = require("body-parser");
 
 const app = express();
-const port = process.env.PORT || 3000;
 
-// Middleware
 app.use(express.json());
+app.use(bodyParser.json());
 
-// Routes
-app.get('/', (req, res) => {
-    res.send('Welcome to the E-commerce API');
-});
+app.use("/api/v1", productrouter);
 
-// Start the server
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+module.exports = app;
