@@ -5,11 +5,15 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 import { useNavigate } from 'react-router-dom';
 import Banner from './Banner';
 import FooterBanner from './FooterBanner';
+import toast from 'react-hot-toast';
 function CartPage() {
     const navigate = useNavigate();
   const { items, totalPrice } = useSelector(state => state.cart);
   const dispatch = useDispatch();
-
+const rr= (id) => {
+    dispatch(removeItem(id))
+    toast.success("Product removed from cart")
+}
   return (
     <Fragment>
         <Banner text={"Cart"} />
@@ -40,7 +44,7 @@ function CartPage() {
                     <TableCell className="py-4">{item.quantity}</TableCell>
                     <TableCell className="py-4">Rs {(item.price * item.quantity).toFixed(2)}</TableCell>
                     <TableCell className="py-4">
-                      <button onClick={() => dispatch(removeItem(item.id))} className="text-red-500 hover:underline">Remove</button>
+                      <button onClick={()=>rr(item.id)} className="text-red-500 hover:underline">Remove</button>
                     </TableCell>
                   </TableRow>
                 ))}

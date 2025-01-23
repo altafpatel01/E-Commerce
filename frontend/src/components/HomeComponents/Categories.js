@@ -10,7 +10,7 @@ function Categories() {
         <h2 className="text-3xl font-bold mb-6">Browse The Range</h2>
         <p className="text-lg mb-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 
-        <div className="grid grid-cols-1 px-20 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 px-5 md:grid-cols-3 gap-8">
           <div className="  rounded-lg flex flex-col relative overflow-hidden">
             <img src={img1} alt="Dining Room" className="w-full h-full object-cover" />
             <h3 className="text-xl my-3  font-semibold">Dining</h3>

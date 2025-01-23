@@ -6,8 +6,21 @@ import { IoIosGitCompare } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { addItem } from '../../Reducers/CartReducer';
 import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
 function ProductCard({ product }) {
   const dispatch = useDispatch();
+  const handleAddToCart =  ()=>{
+    dispatch(addItem({
+      name: product.name,
+      price: product.price,
+      quantity: 1,
+      image: product.images[0],
+      product: product._id,
+      stock: product.stock,
+      id: product._id,
+    }))
+    toast.success("Product added to cart")
+  }
   return (
    <>
    
@@ -34,15 +47,7 @@ function ProductCard({ product }) {
           )}
         </div>
         <div className="flex items-center justify-between mt-2">
-          <button onClick={()=>{dispatch(addItem({
-                          name: product.name,
-                          price: product.price,
-                          quantity: 1,
-                          image: product.images[0],
-                          product: product._id,
-                          stock: product.stock,
-                          id: product._id,
-                        }))}} className="bg-gold  text-white font-bold py-2 px-4 rounded">
+          <button onClick={handleAddToCart} className="bg-gold  text-white font-bold py-2 px-4 rounded">
             Add to Cart
           </button>
           <div className="flex gap-2">

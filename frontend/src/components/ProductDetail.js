@@ -18,6 +18,7 @@ import { fetchProducts } from "../Reducers/ProductsReducer";
 import Products from "./Product/Products";
 import { useNavigate } from "react-router-dom";
 import FooterBanner from "./FooterBanner";
+import toast from "react-hot-toast";
 function ProductDetails() {
   //   const [rating, setRating] = useState(0);
   //   const [comment, setComment] = useState("");
@@ -81,7 +82,20 @@ function ProductDetails() {
     cssEase: "ease-in-out",
     initialSlide: 0, // Changed to 0 for starting at the first slide
   };
-
+const handleAtC = () => {
+    dispatch(
+      addItem({
+        name: product.name,
+        price: product.price,
+        quantity: quantity,
+        image: product.images[0],
+        product: product._id,
+        stock: product.stock,
+        id: product._id,
+      })
+    );
+    toast.success("Product added to cart");
+  }
   return (
     <Fragment>
       {isLoading ? (
@@ -205,19 +219,7 @@ function ProductDetails() {
                 {/* Add to Cart Button */}
                 {product && product.images ? (
                   <button
-                    onClick={() =>
-                      dispatch(
-                        addItem({
-                          name: product.name,
-                          price: product.price,
-                          quantity: quantity,
-                          image: product.images[0],
-                          product: product._id,
-                          stock: product.stock,
-                          id: product._id,
-                        })
-                      )
-                    }
+                    onClick={handleAtC}
                     className="mt-4 mobile:mt-4  block bg-gold text-white py-3 px-6 rounded-md "
                   >
                     Add to Cart

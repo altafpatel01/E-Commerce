@@ -13,7 +13,7 @@ function Filterbar() {
   };
 
   return (
-    <div className="flex justify-between items-center bg-filter  px-16 py-3">
+    <div className="flex justify-between items-center bg-filter   py-3">
       <div className="flex items-center">
         <button className="flex items-center text-gray-500 hover:text-gray-700">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

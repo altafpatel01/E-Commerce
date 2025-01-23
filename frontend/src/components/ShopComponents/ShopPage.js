@@ -142,7 +142,7 @@ function ShopPage() {
           </div>
         </div>
       )}
-      <div className="flex justify-between items-center bg-filter  px-16 py-3">
+      <div className="flex justify-between items-center bg-filter  px-5 md:px-16 py-3">
         <div className="flex items-center">
           <button className="flex items-center text-gray-500 hover:text-gray-700">
             <span onClick={handleOpen} className="ml-2">
