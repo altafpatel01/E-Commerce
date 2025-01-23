@@ -13,17 +13,28 @@ function HomeProducts() {
   }, [dispatch]);
   return (
     <>
-    {isLoading ? <Loader /> : error ? <ErrorPage/>:(
     <div className="text-center">
-        <h2 className="text-3xl font-bold mb-6">Our Products</h2>
-    
-   {products && <Products products={products} />}
-    <div className="flex mb-10 justify-center">
-    <Link to="/shop" className="text-center   px-10 font-semibold m py-2 border border-gold text-gold">Show More</Link>
+      <h2 className="text-3xl font-bold mb-6">Our Products</h2>
+      {isLoading ? (
+        <Loader />
+      ) : error ? (
+        <ErrorPage />
+      ) : (
+        <>
+          {products && <Products products={products} />}
+          <div className="flex mb-10 justify-center">
+            <Link
+              to="/shop"
+              className="text-center px-10 font-semibold py-2 border border-gold text-gold"
+            >
+              Show More
+            </Link>
+          </div>
+        </>
+      )}
     </div>
-    </div>
-    )}
-    </>
+  </>
+  
   )
 }
 
