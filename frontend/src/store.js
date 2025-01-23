@@ -1,9 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './features/counterSlice'; // Example slice
-
+import cartReducer from "./Reducers/CartReducer"; 
+import productsReducer from "./Reducers/ProductsReducer";
+import ProductDetail from './Reducers/ProductDetail';
 const store = configureStore({
   reducer: {
-    counter: counterReducer, // Add reducers here
+     cart: cartReducer, 
+     getProducts: productsReducer,
+      getProductDetails: ProductDetail,
   },
 });
 

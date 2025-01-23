@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import logo from "../asset/images/Meubel House_Logos-05.png";
-
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const{items} =useSelector(state=>state.cart)
+  const navigate = useNavigate();
+  const hd = () => {
+    navigate("/Cart");
+    setIsOpen(false);
+  }
   return (
     <header className="bg-white shadow-md">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -15,18 +22,18 @@ const Header = () => {
 
         {/* Navigation - Desktop */}
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="/" className="text-gray-700 hover:text-black">
+          <Link to="/" className="text-gray-700 hover:text-black">
             Home
-          </a>
-          <a href="/shop" className="text-gray-700 hover:text-black">
+          </Link>
+          <Link to="/shop" className="text-gray-700 hover:text-black">
             Shop
-          </a>
-          <a href="/about" className="text-gray-700 hover:text-black">
+          </Link>
+          <Link to="/about" className="text-gray-700 hover:text-black">
             About
-          </a>
-          <a href="/contact" className="text-gray-700 hover:text-black">
+          </Link>
+          <Link to="/contact" className="text-gray-700 hover:text-black">
             Contact
-          </a>
+          </Link>
         </nav>
 
         {/* Icons */}
@@ -40,8 +47,11 @@ const Header = () => {
           <button className="text-gray-700 hover:text-black">
             <i className="fas fa-heart"></i>
           </button>
-          <button className="text-gray-700 hover:text-black">
+          <button onClick={hd} className="text-gray-700 hover:text-black">
             <i className="fas fa-shopping-cart"></i>
+            <span className="bg-gold text-white px-1 rounded-full ml-1">
+              {items.length}
+            </span>
           </button>
         </div>
 
@@ -57,30 +67,26 @@ const Header = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <nav className="md:hidden bg-white shadow-md">
-          <a
-            href="/"
+          <Link        to="/"
             className="block py-2 px-4 text-gray-700 hover:bg-gray-100"
           >
             Home
-          </a>
-          <a
-            href="/shop"
+          </Link>
+          <Link        to="/shop"
             className="block py-2 px-4 text-gray-700 hover:bg-gray-100"
           >
             Shop
-          </a>
-          <a
-            href="/about"
+          </Link>
+          <Link         to="/about"
             className="block py-2 px-4 text-gray-700 hover:bg-gray-100"
           >
             About
-          </a>
-          <a
-            href="/contact"
+          </Link>
+          <Link        to="/contact"
             className="block py-2 px-4 text-gray-700 hover:bg-gray-100"
           >
             Contact
-          </a>
+          </Link>
           <div className="flex justify-around py-3 border-t">
             <button className="text-gray-700 hover:text-black">
               <i className="fas fa-user"></i>
@@ -91,8 +97,11 @@ const Header = () => {
             <button className="text-gray-700 hover:text-black">
               <i className="fas fa-heart"></i>
             </button>
-            <button className="text-gray-700 hover:text-black">
+            <button onClick={hd} className="text-gray-700 hover:text-black">
               <i className="fas fa-shopping-cart"></i>
+              <span className="bg-gold text-white px-1 rounded-full ml-1">
+              {items.length}
+            </span>
             </button>
           </div>
         </nav>

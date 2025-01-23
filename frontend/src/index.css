@@ -4,3 +4,78 @@
 @tailwind utilities;
 
 @import '@fortawesome/fontawesome-free/css/all.min.css';
+
+
+
+
+.your-class::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid white;
+  
+  color:red;
+  clip-path: polygon(100% 80%, 0% 100%, 100% 100%);
+  background: white; /* Adjust as needed */
+  z-index: 20; /* Ensure it's above other content */
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Start transparent */
+  }
+  to {
+    opacity: 1; /* Fully visible */
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-in-out; /* Run the fade-in animation */
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+.animate-bounce-delay-100 {
+  animation: bounce 1s infinite;
+  animation-delay: 0.33s; /* Delayed by 1/3 of the total duration */
+}
+
+.animate-bounce-delay-200 {
+  animation: bounce 1s infinite;
+  animation-delay: 0.66s; /* Delayed by 2/3 of the total duration */
+}
+
+.monkey-eyes {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.monkey-hide-eyes .monkey-eyes {
+  opacity: 0; /* Hide the eyes when typing password */
+}
+
