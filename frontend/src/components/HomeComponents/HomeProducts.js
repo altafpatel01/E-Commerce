@@ -3,14 +3,17 @@ import Products from '../Product/Products';
 import { Link } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux';
 import { fetchProducts } from '../../Reducers/ProductsReducer';
+import Loader from '../Loading';
+import ErrorPage from '../ErrorPage';
 function HomeProducts() {
-   const { products } = useSelector((state) => state.getProducts);
+   const { products,isLoading,error  } = useSelector((state) => state.getProducts);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchProducts({keyword:'',page:1}));
   }, [dispatch]);
   return (
     <>
+    {isLoading ? <Loader /> : error ? <ErrorPage/>:(
     <div className="text-center">
         <h2 className="text-3xl font-bold mb-6">Our Products</h2>
     
@@ -19,6 +22,7 @@ function HomeProducts() {
     <Link to="/shop" className="text-center   px-10 font-semibold m py-2 border border-gold text-gold">Show More</Link>
     </div>
     </div>
+    )}
     </>
   )
 }
