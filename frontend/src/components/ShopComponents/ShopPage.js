@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Banner from "../Banner";
 import Pagination from "@mui/material/Pagination";
 import "rc-slider/assets/index.css";
-
+import Loader from "../Loading";
+import ErrorPage from "../ErrorPage";
 import { IoMdClose } from "react-icons/io";
 
 import Products from "../Product/Products";
@@ -51,16 +52,16 @@ function ShopPage() {
     dispatch(fetchProducts({ keyword, page, priceRange, categories, rating })); // Pass categories array
     handleOpen();
   };
-  const { products } = useSelector((state) => state.getProducts);
+  const { products, isLoading, error } = useSelector(
+    (state) => state.getProducts
+  );
 
   const handleSortByChange = (value) => {
     setSortBy(value);
-
-   
   };
 
   useEffect(() => {
-    dispatch(fetchProducts({ keyword:'', page }));
+    dispatch(fetchProducts({ keyword: "", page }));
   }, [dispatch, keyword, page]);
   return (
     <>
@@ -187,7 +188,13 @@ function ShopPage() {
         </div>
       </div>
 
-      {products && <Products products={products} />}
+      {isLoading ? (
+        <Loader />
+      ) : error ? (
+        <ErrorPage />
+      ) : (
+        products && <Products products={products} />
+      )}
 
       <div className="flex justify-center my-8 ">
         <Stack spacing={2}>
